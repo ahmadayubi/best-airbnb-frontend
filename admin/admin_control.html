@@ -1,0 +1,28 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<title>Admin SQL Dashboard</title>
+<!-- Include CSS File Here -->
+
+<!-- Include JS File Here -->
+<script src="admin_control.js"></script>
+</head>
+<body>
+<div class="container">
+<div class="main">
+</br>
+<h2>Admin SQL Dashboard</h2>
+<form class="form-group" id="form_id" method="post" name="myform">
+</br>
+<textarea id="sqlq" rows="15" cols="100"></textarea>
+</br>
+</br>
+<input style="display:inline-block" class="btn btn-primary" type="button" value="Run Query" id="submit" onclick="sendQ()"/>
+<button style="display:inline-block" onclick="clear()" type="button" class="btn btn-secondary">Clear</button>
+</form>
+
+</div>
+</div>
+<div id="personinfo"> </div>
+</body>
+</html>
