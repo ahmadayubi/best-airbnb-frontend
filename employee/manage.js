@@ -15,7 +15,7 @@ function getData(eID, pID) {
     var baseurl = "https://best-airbnb.herokuapp.com";
 
     var check = new XMLHttpRequest();
-    check.open("GET", baseurl + "/custom?sql=select * from public.prop_manage where employee_id=" + eID + " and employee_id=" + pID, true);
+    check.open("GET", baseurl + "/custom?sql=select * from public.prop_manage where employee_id=" + eID + " and property_id=" + pID, true);
     check.onreadystatechange = function () {
         if (check.readyState === 4 && check.status === 200) {
             var results = JSON.parse(check.responseText);
