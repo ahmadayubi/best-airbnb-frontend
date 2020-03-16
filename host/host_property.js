@@ -28,7 +28,11 @@ function getData(hID) {
 
             if (results.length > 0) { //CHANCE BACK TO 0 LATERRRRRRR
                 var xhr = new XMLHttpRequest();
+
+                // EDIT THIS TO USE RENTAL PROPERTY
                 xhr.open("GET", baseurl + "/custom?sql=SELECT * FROM public.property", true);
+
+
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4 && xhr.status === 200) {
                         var results = JSON.parse(xhr.responseText);
@@ -51,7 +55,7 @@ function getData(hID) {
                             newRow.innerHTML = record;
                         }
                     } else if (xhr.status === 400) {
-                        alert("Error");
+                        document.getElementById("message").innerHTML = "Error";
                         return false;
                     }
                 };
