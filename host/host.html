@@ -21,31 +21,31 @@
     <div class="container" style="margin-top: 50px;">
         <h2 style="margin-bottom: 40px;">Property Details</h2>
 
-        <form>
+        <form onsubmit="return false">
 
             <div class="form-group">
                 <label for="propertyAddress">Street Number</label>
-                <input type="text" class="form-control" id="streetNum" aria-describedby="streetNumHelp" placeholder="Enter street number">
+                <input type="text" class="form-control" id="streetNum" aria-describedby="streetNumHelp" placeholder="Enter street number" required/>
             </div>
 
             <div class="form-group">
                 <label for="propertyAddress">Street</label>
-                <input type="text" class="form-control" id="street" aria-describedby="streetHelp" placeholder="Enter street">
+                <input type="text" class="form-control" id="street" aria-describedby="streetHelp" placeholder="Enter street" required/>
             </div>
 
             <div class="form-group">
                 <label for="propertyCity">City</label>
-                <input type="text" class="form-control" id="propertyCity" aria-describedby="propertyCityHelp" placeholder="Enter city">
+                <input type="text" class="form-control" id="propertyCity" aria-describedby="propertyCityHelp" placeholder="Enter city" required/>
             </div>
 
             <div class="form-group">
                 <label for="propertyProvince">Province/State</label>
-                <input type="text" class="form-control" id="propertyProvince" aria-describedby="propertyProvinceHelp" placeholder="Enter province/state">
+                <input type="text" class="form-control" id="propertyProvince" aria-describedby="propertyProvinceHelp" placeholder="Enter province/state" required/>
             </div>
 
             <div class="form-group">
                 <label for="propertyCountry">Country</label>
-                <select id="country" name="country" class="form-control">
+                <select id="country" name="country" class="form-control" required>
                     <option value="Canada" selected>Canada</option>
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="United States">United States</option>
@@ -57,65 +57,83 @@
                 <textarea class="form-control" rows="4" id="propertyDescription" aria-describedby="propertyDescription"></textarea>
             </div>
 
+            <div class="form-group">
+                <label for="propertyType">Property Type</label>
+                <select id="propertyType" name="propertyType" class="form-control" onclick="setRateRange()" required>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="ratePerNight">Rate per night</label>
+                <input type="number" class="form-control" id="ratePerNight" aria-describedby="ratePerNight" required/>
+            </div>
+
             <div id="amenities"> <span>Amenities</span> (check all that apply)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="amenitiesCheck1">
-                    <label class="form-check-label" for="amenitiesCheck1">Gym</label>
+                    <input class="form-check-input" type="checkbox" value="gym" id="amenitiesGym">
+                    <label class="form-check-label" for="amenitiesGym">Gym</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="amenitiesCheck2">
-                    <label class="form-check-label" for="amenitiesCheck2">Laundry</label>
+                    <input class="form-check-input" type="checkbox" value="laundry" id="amenitiesLaundry">
+                    <label class="form-check-label" for="amenitiesLaundry">Laundry</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="amenitiesCheck3">
-                    <label class="form-check-label" for="amenitiesCheck3">Parking</label>
+                    <input class="form-check-input" type="checkbox" value="parking" id="amenitiesParking">
+                    <label class="form-check-label" for="amenitiesParking">Parking</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="amenitiesCheck4">
-                    <label class="form-check-label" for="amenitiesCheck4">Pool</label>
+                    <input class="form-check-input" type="checkbox" value="pool" id="amenitiesPool">
+                    <label class="form-check-label" for="amenitiesPool">Pool</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="amenitiesCheck5">
-                    <label class="form-check-label" for="amenitiesCheck5">Security</label>
+                    <input class="form-check-input" type="checkbox" value="security" id="amenitiesSecurity">
+                    <label class="form-check-label" for="amenitiesSecurity">Security</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="amenitiesCheck6">
-                    <label class="form-check-label" for="amenitiesCheck6">Wifi</label>
+                    <input class="form-check-input" type="checkbox" value="wifi" id="amenitiesWifi">
+                    <label class="form-check-label" for="amenitiesWifi">Wifi</label>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="form-check-label" for="numOfBeds">Number of beds</label>
-                <input class="form-control" type="number" placeholder="0" min="0" id="numOfBeds">
+                <input class="form-control" type="number" placeholder="0" min="0" id="numOfBeds" required/>
             </div>
 
             <div class="form-group">
                 <label class="form-check-label" for="numOfBaths">Number of bathrooms</label>
-                <input class="form-control" type="number" placeholder="0" step="0.5" min="0" id="numOfBaths">
+                <input class="form-control" type="number" placeholder="0" step="0.5" min="0" id="numOfBaths" required/>
             </div>
 
 
+            <label class="form-check-label" for="roomTypes" style="font-weight: bold;">Room Types</label>
+            <div class="form-row">
+                <div class="col">
+                    <input id="unique" type="number" class="form-control" min=0 placeholder="Unique">
+                </div>
+                <div class="col">
+                    <input id="shared" type="number" class="form-control" min=0 placeholder="Shared">
+                </div>
+                <div class="col">
+                    <input id="private" type="number" class="form-control" min=0 placeholder="Private">
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="exampleFormControlFile1">Property Agreement</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" />
             </div>
 
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="agreeToTerms">
+                <input type="checkbox" class="form-check-input" id="agreeToTerms" />
                 <label class="form-check-label" for="agreeToTerms">I agree to the terms and services.</label>
             </div>
 
             <div id="message" class="alert " role="alert" style="margin-top: 10px;"></div>
 
-            <button type="button" class="btn btn-primary" onclick="addProperty()">Submit</button>
+            <button type="submit" class="btn btn-primary" onclick="addProperty()">Submit</button>
         </form>
-
-
-
     </div>
-
-
 
     <style>
         button {
@@ -137,7 +155,6 @@
             margin-bottom: -20px;
         }
     </style>
-
 
 </body>
 
