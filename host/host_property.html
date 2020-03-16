@@ -13,16 +13,16 @@
     <div id="queryResults">
 
         <h4>Add A Property</h4>
-        <button style="margin-bottom: 20px;" type="button" class="btn btn-primary" onclick="window.location.href='host.html'">Click here to add a new property</button>
+        <button style="margin-bottom: 20px;" type="button" class="btn btn-primary" id="addPropBtn" onclick="window.location.href='host.html?host_id=' + 1">Click here to add a new property</button>
 
         <h4>List All Properties</h4>
-        <form method="post ">
-            <div class="input-group mb-3 ">
-                <div class="input-group-prepend ">
-                    <span class="input-group-text " id="basic-addon1 ">Property ID:</span>
+        <form method="post" action="host.html" method="GET">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Property ID:</span>
                 </div>
                 <input class="form-control" aria-describedby="basic-addon1" type="text" id="property_id" name="property_id" />
-                <input style="display:inline-block" class="btn btn-primary" type="button" value="Run Query" id="submit" onclick="manageProp() " value="Edit Property" />
+                <input style="display:inline-block" class="btn btn-primary" type="button" value="Run Query" id="submit" onclick="manageProp()" value="Edit Property" />
             </div>
         </form>
         <h5>Below are all properties you have hosted.</h5>

@@ -1,6 +1,80 @@
 var baseurl = "https://best-airbnb.herokuapp.com";
+var vars = {};
+var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+    vars[key] = value;
+});
+var host_id = vars.host_id;
+
+
+// TO DO - fix rates, update agreement column to be char[], nested callbacks in host_property, amenities are hardcoded rn
+
 
 getPropertyType();
+
+
+function addRentalProperty(prop_id, agreement_id) {
+    query = "INSERT INTO public.rental_property VALUES(" + host_id + ", " + agreement_id + ", " + prop_id + ")";
+    console.log(query);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", baseurl + "/custom?sql=" + query, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {} else if (xhr.status === 400) {
+            return false;
+        }
+    };
+    xhr.send();
+}
+
+function addPropertyAgreement(prop_id) {
+    var data = {};
+    var query;
+    $("#message2").hide();
+
+    var xhr = new XMLHttpRequest();
+    var tableCount = 0;
+    xhr.open("GET", baseurl + "/custom?sql=SELECT COUNT(*) FROM public.agreement", true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var results = JSON.parse(xhr.responseText);
+            tableCount = results[0]['count'];
+
+            data.id = parseInt(tableCount) + 1;
+            data.startDate = document.getElementById("startDate").value;
+            data.endDate = document.getElementById("endDate").value;
+            // data.agreement = document.getElementById("propAgreementFile").value;
+
+
+            query = "INSERT INTO public.agreement VALUES(" + data.id + ", '" + data.startDate + "', '" +
+                data.endDate + "', ARRAY['t'])";
+
+            var xhr2 = new XMLHttpRequest();
+            xhr2.open("GET", baseurl + "/custom?sql=" + query, true);
+            xhr2.onreadystatechange = function() {
+                if (xhr2.readyState === 4 && xhr2.status === 200) {
+
+                    document.getElementById("message2").innerHTML = "Property agreement added!";
+                    $("#message2").removeClass("alert-danger").addClass("alert-success");
+                    $("#message2").show();
+
+                    addRentalProperty(prop_id, data.id);
+
+                } else if (xhr2.status === 400) {
+                    document.getElementById("message2").innerHTML = "Invalid SQL Request";
+                    $("#message2").removeClass("alert-success").addClass("alert-danger");
+                    $("#message2").show();
+                    return false;
+                }
+            };
+            xhr2.send();
+
+        } else if (xhr.status === 400) {
+            return false;
+        }
+    };
+    xhr.send();
+}
+
 
 function setRateRange() {
     var propType = document.getElementById("propertyType").value;
@@ -65,6 +139,7 @@ function addProperty() {
             var results = JSON.parse(xhr.responseText);
             tableCount = results[0]['count'];
 
+            // Get column values
             data.id = parseInt(tableCount) + 1;
             data.house_num = document.getElementById("streetNum").value;
             data.street = document.getElementById("street").value;
@@ -76,8 +151,11 @@ function addProperty() {
             data.bedCount = document.getElementById("numOfBeds").value;
             data.bathCount = document.getElementById("numOfBaths").value;
 
-            // do room type
-            data.roomType = null;
+            var selectedRoomTypes = "'{";
+            $("#roomType input:checkbox:checked").each(function() {
+                selectedRoomTypes += $(this).val() + ','
+            });
+            data.roomTypes = selectedRoomTypes.replace(/,\s*$/, "") + "}'";
 
             var selectedAmenities = "'{";
             $("#amenities input:checkbox:checked").each(function() {
@@ -85,20 +163,21 @@ function addProperty() {
             });
             data.amenities = selectedAmenities.replace(/,\s*$/, "") + "}'";
 
+            // Query to insert new property record
             query = "INSERT INTO public.property VALUES(" + data.id + ", '" + data.house_num + "', '" +
                 data.street + "', '" + data.city + "', '" + data.province + "', '" + data.country + "', " + data.rate + ", '" +
                 data.description + "', " + data.amenities + ", " + data.bedCount + ", " + data.bathCount + ', ' +
-                data.roomType + ")";
+                data.roomTypes + ")";
 
             var xhr2 = new XMLHttpRequest();
-
             xhr2.open("GET", baseurl + "/custom?sql=" + query, true);
             xhr2.onreadystatechange = function() {
                 if (xhr2.readyState === 4 && xhr2.status === 200) {
-                    var results = JSON.parse(xhr2.responseText);
+
                     document.getElementById("message").innerHTML = "Property added!";
                     $("#message").removeClass("alert-danger").addClass("alert-success");
                     $("#message").show();
+                    addPropertyAgreement(data.id);
 
                 } else if (xhr2.status === 400) {
                     document.getElementById("message").innerHTML = "Invalid SQL Request";
