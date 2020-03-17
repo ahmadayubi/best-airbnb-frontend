@@ -1,0 +1,55 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body class="m-5">
+  <div id="message" class="alert alert-danger" role="alert"></div>
+
+  <div id="queryResults">
+
+    <h4 id="welcome-msg"></h4>
+
+    <form method="post" action="host.html" method="GET">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Find your next stay:</span>
+        </div>
+        <input disabled class="form-control" aria-describedby="basic-addon1" type="text" id="property_id"
+          name="property_id" />
+        <input disabled style="display:inline-block" class="btn btn-primary" type="button" value="Search" id="submit"
+          onclick="manageProp()" value="Edit Property" />
+      </div>
+    </form>
+
+    <h5>Your bookings:</h5>
+    <div id="prop">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Address</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Description</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </div>
+  </div>
+
+  <style>
+    #message {
+      display: none;
+    }
+  </style>
+
+  <script src="guest_home.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
+</body>
+
+</html>
