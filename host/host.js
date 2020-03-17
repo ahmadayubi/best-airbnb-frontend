@@ -6,7 +6,7 @@ var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, 
 var host_id = vars.host_id;
 
 
-// TO DO - fix rates, update agreement column to be char[], nested callbacks in host_property, amenities are hardcoded rn
+// TO DO - fix rates, update agreement column to be char[], amenities are hardcoded rn
 
 
 getPropertyType();
@@ -26,6 +26,7 @@ function addRentalProperty(prop_id, agreement_id) {
     xhr.send();
 }
 
+
 function addPropertyAgreement(prop_id) {
     var data = {};
     var query;
@@ -43,7 +44,6 @@ function addPropertyAgreement(prop_id) {
             data.startDate = document.getElementById("startDate").value;
             data.endDate = document.getElementById("endDate").value;
             // data.agreement = document.getElementById("propAgreementFile").value;
-
 
             query = "INSERT INTO public.agreement VALUES(" + data.id + ", '" + data.startDate + "', '" +
                 data.endDate + "', ARRAY['t'])";
