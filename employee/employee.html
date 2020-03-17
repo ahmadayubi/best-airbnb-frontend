@@ -4,23 +4,85 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="employee.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </head>
 
-<body class="m-5">
-    <div id="intro"></div>
-    <form method="post">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Property ID:</span>
+<body onload="onCreate()">
+    <div class="p-2 bg-danger text-white text-center">AirBNB Clone DEMO</div>
+    <div class="m-5 shadow p-3 bg-white rounded">
+        <div id="intro"></div>
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-info btn-block" type="button" data-toggle="collapse"
+                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Edit Properties Under Management
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse collapsed" aria-labelledby="headingOne"
+                    data-parent="#accordionExample">
+                    <div class="card-body">
+
+                        <form method="post">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Property ID:</span>
+                                </div>
+                                <input class="form-control" aria-describedby="basic-addon1" type="text" id="property_id"
+                                    name="property_id" />
+                                <input style="display:inline-block" class="btn btn-primary" type="button"
+                                    value=" Edit Property" id="submit" onclick="manageProp()" />
+                            </div>
+                        </form>
+                        <h5 class="border-top">Below are all properties under your management</h5>
+                        <div id="props"></div>
+                    </div>
+                </div>
             </div>
-            <input class="form-control" aria-describedby="basic-addon1" type="text" id="property_id"
-                name="property_id" />
-            <input style="display:inline-block" class="btn btn-primary" type="button" value="Run Query" id="submit"
-                onclick="manageProp()"" value=" Edit Property" />
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-info btn-block collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Manage More Properties
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Property ID:</span>
+                                </div>
+                                <input class="form-control" aria-describedby="basic-addon1" type="text"
+                                    id="property_id_claim" name="property_id_claim" />
+                                <input style="display:inline-block" class="btn btn-primary" type="button"
+                                    value="Manage Property" id="submitClaim" onclick="claimProp()" />
+                            </div>
+                        </form>
+                        <h5 id="unclaimed-header" class="border-top">Currently Unmanaged Properties In Your Region</h5>
+                        <div id="UnclaimedProps"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </form>
-    <h5>Below are all properties under your management</h5>
-    <div id="props"></div>
+    </div>
+
+
+
 </body>
 
 </html>
