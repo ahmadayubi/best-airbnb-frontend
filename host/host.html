@@ -105,7 +105,6 @@
                 <input class="form-control" type="number" placeholder="0" step="0.5" min="0" id="numOfBaths" required/>
             </div>
 
-            <label class="form-check-label" for="roomTypes" style="font-weight: bold;">Room Types</label>
             <div id="roomType"> <span>Room Types</span> (check all that apply)
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="unique" id="roomUnique">
@@ -118,18 +117,6 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="private" id="roomPrivate">
                     <label class="form-check-label" for="roomPrivate">Private</label>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="col">
-                    <input id="unique" type="number" class="form-control" min=0 placeholder="Unique">
-                </div>
-                <div class="col">
-                    <input id="shared" type="number" class="form-control" min=0 placeholder="Shared">
-                </div>
-                <div class="col">
-                    <input id="private" type="number" class="form-control" min=0 placeholder="Private">
                 </div>
             </div>
 
@@ -149,7 +136,7 @@
             </div>
 
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="agreeToTerms" />
+                <input type="checkbox" class="form-check-input" id="agreeToTerms" required/>
                 <label class="form-check-label" for="agreeToTerms">I agree to the terms and conditions.</label>
             </div>
 
@@ -170,8 +157,13 @@
         }
         
         .form-group label,
-        #amenities span {
+        #amenities span,
+        #roomType span {
             font-weight: bold;
+        }
+        
+        #roomType {
+            margin-bottom: 20px;
         }
         
         #message,
