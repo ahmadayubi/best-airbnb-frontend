@@ -167,7 +167,7 @@ function bookCurrentProperty() {
       .then(res => {
         if (res.ok) {
           showSuccessBooking();
-          setTimeout(() => window.location.replace(`/guest/guest_home.html?guest_id=${guestID}`), 3000);
+          setTimeout(() => window.location.replace(`/best-airbnb-frontend/guest/guest_home.html?guest_id=${guestID}`), 3000);
         }
         else {
           showErrorBooking("A server-side error occurred when creating your payment.");
