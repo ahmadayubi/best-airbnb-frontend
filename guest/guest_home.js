@@ -5,6 +5,7 @@ window.onload = function () {
     vars[key] = value;
   });
   const guestID = vars.guest_id;
+  document.getElementById('guest-id').value = guestID;
 
   // TODO: add querying endpoints for guest, booking, and property
 
@@ -48,8 +49,8 @@ window.onload = function () {
         newRow = '';
       bookings.forEach(b => {
         let p = properties.find(p => p.id === b.property_id);
-        let start_date = moment(new Date(b.start_date)).format('MMMM D, Y');
-        let end_date = moment(new Date(b.end_date)).format('MMMM D, Y');
+        let start_date = new Date(b.start_date).toISOString().split("T")[0];
+        let end_date = new Date(b.end_date).toISOString().split("T")[0];
 
         record = `
         <tr>
@@ -59,6 +60,7 @@ window.onload = function () {
           <td>${p.description}</td>
           <td>${start_date}</td>
           <td>${end_date}</td>
+          <td><input type='button' class='btn btn-sm btn-outline-success' value='Add a review'></td>
         </tr>`;
         newRow = recordsTable.insertRow(recordsTable.rows.length);
         newRow.innerHTML = record;

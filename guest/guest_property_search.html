@@ -1,0 +1,146 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body class="m-5">
+  <div id="message-properties" class="alert alert-danger" role="alert">This branch has no properties available for
+    booking.</div>
+
+  <div id="queryResults">
+    <h5 id="country-header"></h5>
+    <div id="prop">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Property ID</th>
+            <th scope="col">Address</th>
+            <th scope="col">Rate</th>
+            <th scope="col">Description</th>
+            <th scope="col">Amenities</th>
+            <th scope="col">Bed Count</th>
+            <th scope="col">Bath Count</th>
+            <th scope="col">Room Type</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </div>
+  </div>
+
+  <!-- Confirm Booking Modal (has agreement) -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Create a Booking</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="bookingModalContent" class="modal-body">
+
+          <p id="rate"></p>
+          <p id="available-dates"></p>
+
+          <form onsubmit="return false">
+
+            <label class="form-check-label" for="booking-dates" style="font-weight: bold;">Your Booking Dates</label>
+
+            <div class="form-row">
+              <div class="col">
+                <input id="start-date" type="date" class="form-control" onchange="onDateChange()">
+              </div>
+              <div class="col">
+                <input id="end-date" type="date" class="form-control" onchange="onDateChange()">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-check-label mt-2" for="payment-method" style="font-weight: bold;">Payment
+                Method</label>
+              <select id="payment-method" name="payment-method" class="form-control" required>
+                <option value="cash" selected>Cash</option>
+                <option value="check">Check</option>
+                <option value="credit">Credit</option>
+                <option value="debit">Debit</option>
+              </select>
+            </div>
+
+            <p id="payment-amount"></p>
+
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="agreeToTerms" required />
+              <label class="form-check-label" for="agree-to-terms">I agree to the terms and conditions.</label>
+            </div>
+
+            <div id="message-booking" class="alert alert-danger mt-2" role="alert"></div>
+
+            <div id="message-success" class="alert alert-success mt-2" role="alert">Booking and payment made!
+              Redirecting...</div>
+
+            <button type="button" class="btn btn-sm btn-outline-success float-right"
+              onclick="bookCurrentProperty()">Book</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary float-right mr-2" type="submit"
+              onclick="$('#bookingModal').modal('hide');">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Booking Modal (does not have agreement) -->
+  <div class="modal fade" id="noAgreementModal" tabindex="-1" role="dialog" aria-labelledby="noAgreementModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Sorry</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          This property has not signed an agreement yet.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #message-properties {
+      display: none;
+    }
+
+    #message-booking {
+      display: none;
+    }
+
+    #message-success {
+      display: none;
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
+  <script src="guest_property_search.js"></script>
+
+  <!-- bootstrap: -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

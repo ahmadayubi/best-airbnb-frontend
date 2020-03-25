@@ -12,15 +12,18 @@
 
     <h4 id="welcome-msg"></h4>
 
-    <form method="post" action="host.html" method="GET">
+    <form action="guest_property_search.html" method="GET">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">Find your next stay:</span>
+          <span class="input-group-text">Find your next stay:</span>
         </div>
-        <input disabled class="form-control" aria-describedby="basic-addon1" type="text" id="property_id"
-          name="property_id" />
-        <input disabled style="display:inline-block" class="btn btn-primary" type="button" value="Search" id="submit"
-          onclick="manageProp()" value="Edit Property" />
+        <select id="country" name="country" class="form-control" required>
+          <option value="Canada" selected>Canada</option>
+          <option value="United Kingdom">United Kingdom</option>
+          <option value="United States">United States</option>
+        </select>
+        <input id="guest-id" name="guestID" type="number" required style="display: none;" />
+        <input class="btn btn-primary" type="submit" value="Search" id="submit" />
       </div>
     </form>
 
@@ -29,12 +32,13 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">ID</th>
+            <th scope="col">Booking ID</th>
             <th scope="col">Address</th>
             <th scope="col">Rate</th>
             <th scope="col">Description</th>
             <th scope="col">Start Date</th>
             <th scope="col">End Date</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -48,8 +52,8 @@
     }
   </style>
 
-  <script src="guest_home.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
+  <script src="guest_home.js"></script>
 </body>
 
 </html>
