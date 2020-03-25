@@ -31,7 +31,7 @@ function getData(hID) {
 
                 for (var i = 0; i < results.length; i++) {
                     record = '<tr><th scope="row">' + results[i].id + '</th>' +
-                        '<td>' + results[i].house_num + ' ' + results[0].street + ', ' + results[i].city +
+                        '<td>' + results[i].house_num + ' ' + results[i].street + ', ' + results[i].city +
                         ', ' + results[i].province + ', ' + results[i].country + '</td>' +
                         '<td>' + results[i].rate + '</td>' +
                         '<td>' + results[i].description + '</td>' +
