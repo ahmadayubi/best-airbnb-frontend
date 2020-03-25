@@ -3,16 +3,26 @@
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <style type="text/css">
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    #wrapper {
+      min-height: 100%;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="p-2 bg-danger text-white text-center">AirBNB Clone DEMO</div>
-  <div class="m-5 shadow p-3 bg-white rounded">
-    <h3>Please Enter Employee ID To Access Properties Under Management</h3>
+  <div id="wrapper" class=" container d-flex justify-content-center align-items-center">
     <form action="employee.html" method="GET">
-      <div class="input-group mb-3">
+      <div class="input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1">ID Number:</span>
+          <span class="input-group-text" id="basic-addon1">Employee ID</span>
         </div>
         <input class="form-control" aria-describedby="basic-addon1" type="text" name="employee_id" />
         <input class="btn btn-primary" type="submit" value="Enter" />
