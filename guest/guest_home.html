@@ -46,14 +46,85 @@
     </div>
   </div>
 
+  <!-- Confirm Booking Modal (has agreement) -->
+  <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="bookingModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Review this Property</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="bookingModalContent" class="modal-body">
+
+          <form onsubmit="return false">
+
+            <p id="property-name"></p>
+
+            <div class="form-group row">
+              <label for="rating-cleanliness" class="col-4 col-form-label">Cleanliness</label>
+              <div class="col-8">
+                <input class="form-control" type="number" value="0" min="0" max="5" id="rating-cleanliness">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="rating-communication" class="col-4 col-form-label">Communication</label>
+              <div class="col-8">
+                <input class="form-control" type="number" value="0" min="0" max="5" id="rating-communication">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="rating-value" class="col-4 col-form-label">Value</label>
+              <div class="col-8">
+                <input class="form-control" type="number" value="0" min="0" max="5" id="rating-value">
+              </div>
+            </div>
+
+            <div id="message-review" class="alert alert-danger mt-2" role="alert"></div>
+
+            <div id="message-success" class="alert alert-success mt-2" role="alert">Review submitted!</div>
+
+            <button type="button" class="btn btn-sm btn-outline-success float-right"
+              onclick="submitReview()">Submit</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary float-right mr-2" type="submit"
+              onclick="$('#reviewModal').modal('hide');">Cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <style>
     #message {
+      display: none;
+    }
+
+    #message-review {
+      display: none;
+    }
+
+    #message-success {
       display: none;
     }
   </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.0/moment.min.js"></script>
   <script src="guest_home.js"></script>
+
+  <!-- bootstrap: -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
