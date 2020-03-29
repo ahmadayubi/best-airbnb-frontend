@@ -59,40 +59,17 @@
 
             <div class="form-group">
                 <label for="propertyType">Property Type</label>
-                <select id="propertyType" name="propertyType" class="form-control" onclick="setRateRange()" required>
+                <select id="propertyType" name="propertyType" class="form-control" required>
+                    <option disabled selected value> Select an option </option>
                 </select>
             </div>
 
-            <div class="form-group">
+            <div id="ratePerNightDiv" class="form-group">
                 <label for="ratePerNight">Rate per night</label>
                 <input type="number" class="form-control" id="ratePerNight" aria-describedby="ratePerNight" required/>
             </div>
 
             <div id="amenities"> <span>Amenities</span> (check all that apply)
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="gym" id="amenitiesGym">
-                    <label class="form-check-label" for="amenitiesGym">Gym</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="laundry" id="amenitiesLaundry">
-                    <label class="form-check-label" for="amenitiesLaundry">Laundry</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="parking" id="amenitiesParking">
-                    <label class="form-check-label" for="amenitiesParking">Parking</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="pool" id="amenitiesPool">
-                    <label class="form-check-label" for="amenitiesPool">Pool</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="security" id="amenitiesSecurity">
-                    <label class="form-check-label" for="amenitiesSecurity">Security</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="wifi" id="amenitiesWifi">
-                    <label class="form-check-label" for="amenitiesWifi">Wifi</label>
-                </div>
             </div>
 
             <div class="form-group">
@@ -123,16 +100,16 @@
             <label class="form-check-label" for="propAgreementDates" style="font-weight: bold;">Rental Dates</label>
             <div class="form-row">
                 <div class="col">
-                    <input id="startDate" type="date" class="form-control">
+                    <input id="startDate" type="date" class="form-control" required>
                 </div>
                 <div class="col">
-                    <input id="endDate" type="date" class="form-control">
+                    <input id="endDate" type="date" class="form-control" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="propAgreementFile">Property Agreement</label>
-                <input type="file" class="form-control-file" id="propAgreementFile" />
+                <input type="file" class="form-control-file" id="propAgreementFile" required/>
             </div>
 
             <div class="form-check">
@@ -143,7 +120,7 @@
             <div id="message" class="alert " role="alert" style="margin-top: 10px;"></div>
             <div id="message2" class="alert " role="alert" style="margin-top: 10px;"></div>
 
-            <button type="submit" class="btn btn-primary" onclick="addProperty();addPropertyAgreement();addRentalProperty();">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
@@ -171,6 +148,10 @@
             display: none;
             margin-top: 20px;
             margin-bottom: -20px;
+        }
+        
+        #ratePerNightDiv {
+            display: none;
         }
     </style>
 
