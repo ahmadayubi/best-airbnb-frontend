@@ -32,9 +32,9 @@ function sqlRequest(sqlQ) {
             } else {
                 document.getElementById("intro").innerHTML = "<h2>Welcome back, " + results[0].first_name + " " + results[0].last_name + " ($" + results[0].salary + "/Year)" + "</h2>";
                 var employeeCountry = results[0].country.toLowerCase();
-
+                var employeeUpper = employeeCountry.charAt(0).toUpperCase() + employeeCountry.slice(1);
                 var xhr3 = new XMLHttpRequest();
-                xhr3.open("GET", baseurl + "/custom?sql=select * from public.property where id not in (select property_id from public.prop_manage) and country='" + employeeCountry + "' order by id", true);
+                xhr3.open("GET", baseurl + "/custom?sql=select * from public.property where id not in (select property_id from public.prop_manage) and country='" + employeeUpper + "' order by id", true);
                 xhr3.onreadystatechange = function () {
                     if (xhr3.readyState === 4 && xhr3.status === 200) {
                         var results2 = JSON.parse(xhr3.responseText);
