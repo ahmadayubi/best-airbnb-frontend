@@ -27,16 +27,8 @@ $(document).ready(function() {
         } else {
             $("#message").hide();
             addProperty();
-            addPropertyAgreement();
-            addRentalProperty();
         }
     });
-
-
-
-    // TO DO - update agreement column to be char[]
-
-
 
     /**
      * Adds property ID and property type ID to prop_type table
