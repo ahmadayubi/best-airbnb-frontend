@@ -6,12 +6,10 @@ $(document).ready(function() {
     });
 
     $("#addPropBtn").click(function() {
-        location.href = "host.html?host_id=" + vars.host_id;
+        location.href = "host_add_property.html?host_id=" + vars.host_id;
     });
 
     getData(vars.host_id);
-
-
 
     function getData(hID) {
         var baseurl = "https://best-airbnb.herokuapp.com";

@@ -25,7 +25,6 @@ $(document).ready(function() {
             $("#message").removeClass("alert-success").addClass("alert-danger");
             $("#message").show();
         } else {
-            $("#message").hide();
             addProperty();
         }
     });
@@ -42,9 +41,7 @@ $(document).ready(function() {
         var xhr2 = new XMLHttpRequest();
         xhr2.open("GET", baseurl + "/custom?sql=" + query, true);
         xhr2.onreadystatechange = function() {
-            if (xhr2.readyState === 4 && xhr2.status === 200) {
-
-            } else if (xhr2.status === 400) {
+            if (xhr2.readyState === 4 && xhr2.status === 200) {} else if (xhr2.status === 400) {
                 return false;
             }
         };
@@ -132,10 +129,8 @@ $(document).ready(function() {
         xhr.open("GET", baseurl + "/custom?sql=SELECT min_price, max_price FROM public.property_type WHERE id=" + propType, true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
+
                 var results = JSON.parse(xhr.responseText);
-
-                console.log(results);
-
                 $('#ratePerNight').attr({
                     'min': results[0]['min_price'].replace('$', ''),
                     'max': results[0]['max_price'].replace('$', '')
